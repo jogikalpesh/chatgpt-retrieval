@@ -10,6 +10,8 @@ from langchain.indexes import VectorstoreIndexCreator
 from langchain.indexes.vectorstore import VectorStoreIndexWrapper
 # from langchain.llms import OpenAI
 from langchain.llms import AzureOpenAI
+from langchain.chat_models import AzureChatOpenAI
+
 from langchain.vectorstores import Chroma
 
 import constants
@@ -19,7 +21,7 @@ import constants
 
 os.environ["OPENAI_API_TYPE"] = constants.OPENAI_API_TYPE
 # os.environ["OPENAI_API_VERSION"] = constants.OPENAI_API_VERSION
-# os.environ["OPENAI_API_BASE"] = constants.OPENAI_API_BASE
+os.environ["OPENAI_API_BASE"] = constants.OPENAI_API_BASE
 
 os.environ["OPENAI_API_KEY"] = constants.OPENAI_API_KEY
 
@@ -32,32 +34,40 @@ openai.api_key = constants.OPENAI_API_KEY
 os.environ["OPENAI_API_VERSION"]=constants.OPENAI_API_VERSION
 
 # Enable to save to disk & reuse the model (for repeated queries on the same data)
-PERSIST = False
 
 query = None
 if len(sys.argv) > 1:
   query = sys.argv[1]
 
+PERSIST = True
+
+embedding = OpenAIEmbeddings(
+    model='text-embedding-ada-002',
+    deployment="base-text-embedding-ada-002",
+    chunk_size=1) 
+
 if PERSIST and os.path.exists("persist"):
   print("Reusing index...\n")
-  vectorstore = Chroma(persist_directory="persist", embedding_function=OpenAIEmbeddings())
+  vectorstore = Chroma(persist_directory="persist", embedding_function=embedding)
   index = VectorStoreIndexWrapper(vectorstore=vectorstore)
 else:
   loader = TextLoader("data/data.txt") # Use this line if you only need data.txt
   # loader = DirectoryLoader("data/")
   if PERSIST:
-    index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory":"persist"}).from_loaders([loader])
+    index = VectorstoreIndexCreator(vectorstore_kwargs={"persist_directory":"persist"},embedding=embedding).from_loaders([loader])
   else:
-    index = VectorstoreIndexCreator().from_loaders([loader])
+    index = VectorstoreIndexCreator(embedding=embedding).from_loaders([loader])
+
+
 
 chain = ConversationalRetrievalChain.from_llm(
-  # llm=ChatOpenAI(model="gpt-3.5-turbo"),
-  llm = AzureOpenAI(
-    openai_api_key=constants.OPENAI_API_KEY,
-    deployment_name="base-davinci-002",
-    model_name="davinci-002", 
-),
+   llm= AzureChatOpenAI(
+          openai_api_key=constants.OPENAI_API_KEY,
+          deployment_name="base-gpt35-turbo",
+          model_name="gpt-35-turbo"
+        ),
   retriever=index.vectorstore.as_retriever(search_kwargs={"k": 1}),
+  verbose=True
 )
 
 chat_history = []

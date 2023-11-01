@@ -1,0 +1,89 @@
+This is sample folder structure for rest api named HealthCare. It is containing two Business entities Group and Member. 
+
+HealthCare/
+┣ Code/
+┃ ┣ HealthCare.Api/
+┃ ┃ ┣ Controllers/
+┃ ┃ ┃ ┣ GroupController.cs
+┃ ┃ ┃ ┗ MemberController.cs
+┃ ┃ ┣ Filters/
+┃ ┃ ┃ ┗ HttpResponseExceptionFilter.cs
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ APIInstaller.cs
+┃ ┃ ┣ Middleware/
+┃ ┃ ┃ ┗ RequestResponseLoggingMiddleware.cs
+┃ ┃ ┣ Properties/
+┃ ┃ ┃ ┗ launchSettings.json
+┃ ┃ ┣ appsettings.Development.json
+┃ ┃ ┣ appsettings.json
+┃ ┃ ┣ HealthCare.Api.csproj
+┃ ┃ ┣ nlog.config
+┃ ┃ ┣ Program.cs
+┃ ┃ ┗ Startup.cs
+┃ ┣ HealthCare.Business/
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ ServiceInstaller.cs
+┃ ┃ ┣ Interfaces/
+┃ ┃ ┃ ┣ IGroupService.cs
+┃ ┃ ┃ ┗ IMemberService.cs
+┃ ┃ ┣ Services/
+┃ ┃ ┃ ┣ GroupService.cs
+┃ ┃ ┃ ┗ MemberService.cs
+┃ ┃ ┗ HealthCare.Business.csproj
+┃ ┣ HealthCare.Data/
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ DataInstaller.cs
+┃ ┃ ┣ Interfaces/
+┃ ┃ ┃ ┣ IDelete.cs
+┃ ┃ ┃ ┣ IGetAll.cs
+┃ ┃ ┃ ┣ IGetById.cs
+┃ ┃ ┃ ┣ IGroupRepository.cs
+┃ ┃ ┃ ┣ IMemberRepository.cs
+┃ ┃ ┃ ┣ ISave.cs
+┃ ┃ ┃ ┗ IUpdate.cs
+┃ ┃ ┣ Repositories/
+┃ ┃ ┃ ┣ DataContext.cs
+┃ ┃ ┃ ┣ GroupRepository.cs
+┃ ┃ ┃ ┗ MemberRepository.cs
+┃ ┃ ┗ HealthCare.Data.csproj
+┃ ┣ HealthCare.Entities/
+┃ ┃ ┣ Entities/
+┃ ┃ ┃ ┣ Group.cs
+┃ ┃ ┃ ┗ Member.cs
+┃ ┃ ┗ HealthCare.Entities.csproj
+┃ ┣ HealthCare.Test.Api/
+┃ ┃ ┣ GroupControllerSpec/
+┃ ┃ ┃ ┣ UsingGroupControllerSpec.cs
+┃ ┃ ┃ ┣ When_deleting_group.cs
+┃ ┃ ┃ ┣ When_getting_all_group.cs
+┃ ┃ ┃ ┣ When_saving_group.cs
+┃ ┃ ┃ ┗ When_updating_group.cs
+┃ ┃ ┣ MemberControllerSpec/
+┃ ┃ ┃ ┣ UsingMemberControllerSpec.cs
+┃ ┃ ┃ ┣ When_deleting_member.cs
+┃ ┃ ┃ ┣ When_getting_all_member.cs
+┃ ┃ ┃ ┣ When_saving_member.cs
+┃ ┃ ┃ ┗ When_updating_member.cs
+┃ ┃ ┗ HealthCare.Test.Api.csproj
+┃ ┣ HealthCare.Test.Business/
+┃ ┃ ┣ GroupServiceSpec/
+┃ ┃ ┃ ┣ UsingGroupServiceSpec.cs
+┃ ┃ ┃ ┣ When_deleting_group.cs
+┃ ┃ ┃ ┣ When_getting_all_group.cs
+┃ ┃ ┃ ┣ When_saving_group.cs
+┃ ┃ ┃ ┗ When_updating_group.cs
+┃ ┃ ┣ MemberServiceSpec/
+┃ ┃ ┃ ┣ UsingMemberServiceSpec.cs
+┃ ┃ ┃ ┣ When_deleting_member.cs
+┃ ┃ ┃ ┣ When_getting_all_member.cs
+┃ ┃ ┃ ┣ When_saving_member.cs
+┃ ┃ ┃ ┗ When_updating_member.cs
+┃ ┃ ┗ HealthCare.Test.Business.csproj
+┃ ┣ HealthCare.Test.Framework/
+┃ ┃ ┣ HealthCare.Test.Framework.csproj
+┃ ┃ ┗ SpecFor.cs
+┃ ┗ .gitignore
+┣ .dockerignore
+┣ HealthCare.sln
+┣ Dockerfile.build
+┗ Dockerfile.publish

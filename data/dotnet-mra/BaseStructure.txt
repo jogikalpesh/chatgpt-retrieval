@@ -1,0 +1,73 @@
+This is Folder structure for Boilerplat code for dotnet based Rest API. 
+
+APIInstaller: Uses scrutor to scan through entire api layer and adds all the controllers in dependency container.
+ServiceInstaller: Uses scrutor to scan through entire service layer and adds all the services, Gateways and Validators in dependency container.
+DataInstaller: Uses scrutor to scan through entire Data layer and adds all the repositories in dependency container.
+
+ProjectName/
+┣ Code/
+┃ ┣ ProjectName.Api/
+┃ ┃ ┣ Controllers/
+┃ ┃ ┃ ┗ SampleController.cs
+┃ ┃ ┣ Filters/
+┃ ┃ ┃ ┗ HttpResponseExceptionFilter.cs
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ APIInstaller.cs
+┃ ┃ ┣ Middleware/
+┃ ┃ ┃ ┗ RequestResponseLoggingMiddleware.cs
+┃ ┃ ┣ appsettings.Development.json
+┃ ┃ ┣ appsettings.json
+┃ ┃ ┣ ProjectName.Api.csproj
+┃ ┃ ┣ nlog.config
+┃ ┃ ┣ Program.cs
+┃ ┃ ┗ Startup.cs
+┃ ┣ ProjectName.Business/
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ ServiceInstaller.cs
+┃ ┃ ┣ Interfaces/
+┃ ┃ ┃ ┗ ISampleService.cs
+┃ ┃ ┣ Services/
+┃ ┃ ┃ ┗ SampleService.cs
+┃ ┃ ┗ ProjectName.Business.csproj
+┃ ┣ ProjectName.Data/
+┃ ┃ ┣ Installer/
+┃ ┃ ┃ ┗ DataInstaller.cs
+┃ ┃ ┣ Interfaces/
+┃ ┃ ┃ ┣ IDelete.cs
+┃ ┃ ┃ ┣ IGetAll.cs
+┃ ┃ ┃ ┣ IGetById.cs
+┃ ┃ ┃ ┣ ISampleRepository.cs
+┃ ┃ ┃ ┣ ISave.cs
+┃ ┃ ┃ ┗ IUpdate.cs
+┃ ┃ ┣ Repositories/
+┃ ┃ ┃ ┣ DataContext.cs
+┃ ┃ ┃ ┗ SampleRepository.cs
+┃ ┃ ┗ ProjectName.Data.csproj
+┃ ┣ ProjectName.Entities/
+┃ ┃ ┣ Entities/
+┃ ┃ ┃ ┗ Sample.cs
+┃ ┃ ┗ ProjectName.Entities.csproj
+┃ ┣ ProjectName.Test.Api/
+┃ ┃ ┣ SampleControllerSpec/
+┃ ┃ ┃ ┣ UsingSampleControllerSpec.cs
+┃ ┃ ┃ ┣ When_deleting_sample.cs
+┃ ┃ ┃ ┣ When_getting_all_samples.cs
+┃ ┃ ┃ ┣ When_saving_sample.cs
+┃ ┃ ┃ ┗ When_updating_sample.cs
+┃ ┃ ┗ ProjectName.Test.Api.csproj
+┃ ┣ ProjectName.Test.Business/
+┃ ┃ ┣ SampleServiceSpec/
+┃ ┃ ┃ ┣ UsingSampleServiceSpec.cs
+┃ ┃ ┃ ┣ When_deleting_sample.cs
+┃ ┃ ┃ ┣ When_getting_all_sample.cs
+┃ ┃ ┃ ┣ When_saving_sample.cs
+┃ ┃ ┃ ┗ When_updating_sample.cs
+┃ ┃ ┗ ProjectName.Test.Business.csproj
+┃ ┣ ProjectName.Test.Framework/
+┃ ┃ ┣ ProjectName.Test.Framework.csproj
+┃ ┃ ┗ SpecFor.cs
+┃ ┗ .gitignore
+┣ .dockerignore
+┣ ProjectName.sln
+┣ Dockerfile.build
+┗ Dockerfile.publish
